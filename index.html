@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASKI Kabupaten Landak - Portal Resmi & Edukasi Digital</title>
+    <link rel="icon" href="https://i.ibb.co.com/s9m7KK0y/2.png" type="image/png">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fef2f2',
+                            100: '#ffe1e1',
+                            500: '#ef4444',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                            900: '#7f1d1d',
+                            950: '#450a0a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .view-section { display: none; }
+        .view-section.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .slider-img {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .slider-img.active { opacity: 1; }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-slate-950 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-2">
+                <span class="bg-brand-600 text-white font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-wider">Pengumuman</span>
+                <p class="truncate">Pendaftaran Kejurda Karate Landak 2026 & Ujian Kenaikan Tingkat (UKT) telah dibuka!</p>
+            </div>
+            <div class="flex items-center space-x-4 text-slate-400">
+                <span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-500"></i> Ngabang, Landak, Kalbar</span>
+                <span class="hidden sm:inline">|</span>
+                <span class="hidden sm:flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i> Afiliasi PB FORKI & JKA WF</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER & NAVIGATION -->
+    <header class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex justify-between items-center">
+            
+            <!-- Logo -->
+            <a href="#beranda" onclick="navigateTo('beranda')" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-extrabold text-xl shadow-md group-hover:bg-gray-700/40 transition">
+                    <img src="https://i.ibb.co.com/s9m7KK0y/2.png" alt="ASKI Logo" class="w-6 h-6">
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-slate-900 text-base md:text-lg leading-tight group-hover:text-brand-600 transition tracking-tight">ASKI LANDAK</h1>
+                    <p class="text-[11px] text-slate-500 font-medium">Akademi Seni-Beladiri Karate Indonesia</p>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center space-x-1 text-sm font-semibold text-slate-600">
+                
+                <button onclick="navigateTo('beranda')" class="nav-link px-3 py-2 rounded-lg hover:text-brand-600 hover:bg-slate-50 transition" data-view="beranda">Beranda</button>
+                
+                <!-- Dropdown Profil -->
+                <div class="relative group py-2">
+                    <button class="px-3 py-2 rounded-lg hover:text-brand-600 hover:bg-slate-50 transition flex items-center gap-1">
+                        <span>Profil</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-hover:rotate-180 transition-transform duration-200"></i>
+                    </button>
+                    <div class="absolute top-full left-0 hidden group-hover:block w-56 bg-white rounded-2xl shadow-xl border border-slate-100 p-2 space-y-1 z-50">
+                        <button onclick="navigateTo('sejarah')" class="w-full text-left px-3 py-2 text-xs font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 rounded-xl transition flex items-center gap-2">
+                            <i data-lucide="history" class="w-4 h-4 text-brand-500"></i> Sejarah ASKI
+                        </button>
+                        <button onclick="navigateTo('visimisi')" class="w-full text-left px-3 py-2 text-xs font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 rounded-xl transition flex items-center gap-2">
+                            <i data-lucide="target" class="w-4 h-4 text-brand-500"></i> Visi & Misi
+                        </button>
+                        <button onclick="navigateTo('pengurus')" class="w-full text-left px-3 py-2 text-xs font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 rounded-xl transition flex items-center gap-2">
+                            <i data-lucide="users" class="w-4 h-4 text-brand-500"></i> Pengurus Pengcab
+                        </button>
+                        <button onclick="navigateTo('ranting')" class="w-full text-left px-3 py-2 text-xs font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 rounded-xl transition flex items-center gap-2">
+                            <i data-lucide="building-2" class="w-4 h-4 text-brand-500"></i> Daftar Ranting & Dojo
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dropdown Agenda -->
+                <div class="relative group py-2">
+                    <button class="px-3 py-2 rounded-lg hover:text-brand-600 hover:bg-slate-50 transition flex items-center gap-1">
+                        <span>Agenda</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-hover:rotate-180 transition-transform duration-200"></i>
+                    </button>
+                    <div class="absolute top-full left-0 hidden group-hover:block w-52 bg-white rounded-2xl shadow-xl border border-slate-100 p-2 space-y-1 z-50">
+                        <button onclick="navigateTo('jadwal')" class="w-full text-left px-3 py-2 text-xs font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 rounded-xl transition flex items-center gap-2">
+                            <i data-lucide="clock" class="w-4 h-4 text-brand-500"></i> Jadwal Latihan
+                        </button>
+                        <button onclick="navigateTo('kalender')" class="w-full text-left px-3 py-2 text-xs font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 rounded-xl transition flex items-center gap-2">
+                            <i data-lucide="calendar" class="w-4 h-4 text-brand-500"></i> Kalender Kegiatan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dropdown Galeri -->
+                <div class="relative group py-2">
+                    <button class="px-3 py-2 rounded-lg hover:text-brand-600 hover:bg-slate-50 transition flex items-center gap-1">
+                        <span>Galeri</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-hover:rotate-180 transition-transform duration-200"></i>
+                    </button>
+                    <div class="absolute top-full left-0 hidden group-hover:block w-48 bg-white rounded-2xl shadow-xl border border-slate-100 p-2 space-y-1 z-50">
+                        <button onclick="navigateTo('galeri-foto')" class="w-full text-left px-3 py-2 text-xs font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 rounded-xl transition flex items-center gap-2">
+                            <i data-lucide="image" class="w-4 h-4 text-brand-500"></i> Galeri Foto
+                        </button>
+                        <button onclick="navigateTo('galeri-video')" class="w-full text-left px-3 py-2 text-xs font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 rounded-xl transition flex items-center gap-2">
+                            <i data-lucide="video" class="w-4 h-4 text-brand-500"></i> Galeri Video
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dropdown Berita -->
+                <div class="relative group py-2">
+                    <button class="px-3 py-2 rounded-lg hover:text-brand-600 hover:bg-slate-50 transition flex items-center gap-1">
+                        <span>Berita</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-hover:rotate-180 transition-transform duration-200"></i>
+                    </button>
+                    <div class="absolute top-full left-0 hidden group-hover:block w-48 bg-white rounded-2xl shadow-xl border border-slate-100 p-2 space-y-1 z-50">
+                        <button onclick="navigateTo('berita')" class="w-full text-left px-3 py-2 text-xs font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 rounded-xl transition flex items-center gap-2">
+                            <i data-lucide="newspaper" class="w-4 h-4 text-brand-500"></i> Berita Terbaru
+                        </button>
+                        <button onclick="navigateTo('pengumuman')" class="w-full text-left px-3 py-2 text-xs font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 rounded-xl transition flex items-center gap-2">
+                            <i data-lucide="bell" class="w-4 h-4 text-brand-500"></i> Pengumuman
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dropdown Edukasi Digital -->
+                <div class="relative group py-2">
+                    <button class="px-3 py-2 rounded-lg hover:text-brand-600 hover:bg-slate-50 transition flex items-center gap-1">
+                        <span class="bg-amber-100 text-amber-800 text-[10px] px-1.5 py-0.5 rounded font-bold mr-1">NEW</span>
+                        <span>Edukasi Digital</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-hover:rotate-180 transition-transform duration-200"></i>
+                    </button>
+                    <div class="absolute top-full left-0 hidden group-hover:block w-56 bg-white rounded-2xl shadow-xl border border-slate-100 p-2 space-y-1 z-50">
+                        <button onclick="navigateTo('kihon')" class="w-full text-left px-3 py-2 text-xs font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 rounded-xl transition flex items-center gap-2">
+                            <i data-lucide="zap" class="w-4 h-4 text-brand-500"></i> Gerakan Dasar (Kihon)
+                        </button>
+                        <button onclick="navigateTo('kata')" class="w-full text-left px-3 py-2 text-xs font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600 rounded-xl transition flex items-center gap-2">
+                            <i data-lucide="award" class="w-4 h-4 text-brand-500"></i> Bentuk Jurus (Kata)
+                        </button>
+                    </div>
+                </div>
+
+                <button onclick="navigateTo('pendaftaran')" class="bg-brand-50 text-brand-600 hover:bg-brand-600 hover:text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-xs">
+                    <i data-lucide="user-plus" class="w-4 h-4"></i> Pendaftaran
+                </button>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center space-x-3">
+                <button onclick="navigateTo('login')" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition flex items-center gap-1.5 shadow-sm">
+                    <i data-lucide="log-in" class="w-3.5 h-3.5"></i>
+                    <span>Login</span>
+                </button>
+                
+                <button id="menu-btn" class="lg:hidden text-slate-700 focus:outline-none p-2 rounded-xl hover:bg-slate-100 transition">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-5 py-4 space-y-3 text-sm font-semibold text-slate-700 shadow-xl max-h-[80vh] overflow-y-auto">
+            <button onclick="navigateTo('beranda'); toggleMobileMenu()" class="block w-full text-left py-2 text-brand-600 font-bold">Beranda</button>
+            
+            <div class="pl-3 border-l-2 border-brand-200 space-y-2 py-1">
+                <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Profil Organisasi</p>
+                <button onclick="navigateTo('sejarah'); toggleMobileMenu()" class="block w-full text-left py-1 text-slate-600 hover:text-brand-600">Sejarah ASKI</button>
+                <button onclick="navigateTo('visimisi'); toggleMobileMenu()" class="block w-full text-left py-1 text-slate-600 hover:text-brand-600">Visi & Misi</button>
+                <button onclick="navigateTo('pengurus'); toggleMobileMenu()" class="block w-full text-left py-1 text-slate-600 hover:text-brand-600">Pengurus Pengcab</button>
+                <button onclick="navigateTo('ranting'); toggleMobileMenu()" class="block w-full text-left py-1 text-slate-600 hover:text-brand-600">Daftar Ranting/Dojo</button>
+            </div>
+
+            <div class="pl-3 border-l-2 border-brand-200 space-y-2 py-1">
+                <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Agenda & Kegiatan</p>
+                <button onclick="navigateTo('jadwal'); toggleMobileMenu()" class="block w-full text-left py-1 text-slate-600 hover:text-brand-600">Jadwal Latihan</button>
+                <button onclick="navigateTo('kalender'); toggleMobileMenu()" class="block w-full text-left py-1 text-slate-600 hover:text-brand-600">Kalender Event</button>
+            </div>
+
+            <div class="pl-3 border-l-2 border-brand-200 space-y-2 py-1">
+                <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Media & Berita</p>
+                <button onclick="navigateTo('galeri-foto'); toggleMobileMenu()" class="block w-full text-left py-1 text-slate-600 hover:text-brand-600">Galeri Foto</button>
+                <button onclick="navigateTo('galeri-video'); toggleMobileMenu()" class="block w-full text-left py-1 text-slate-600 hover:text-brand-600">Galeri Video</button>
+                <button onclick="navigateTo('berita'); toggleMobileMenu()" class="block w-full text-left py-1 text-slate-600 hover:text-brand-600">Berita Terbaru</button>
+                <button onclick="navigateTo('pengumuman'); toggleMobileMenu()" class="block w-full text-left py-1 text-slate-600 hover:text-brand-600">Pengumuman</button>
+            </div>
+
+            <div class="pl-3 border-l-2 border-brand-200 space-y-2 py-1">
+                <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Edukasi Digital Karate</p>
+                <button onclick="navigateTo('kihon'); toggleMobileMenu()" class="block w-full text-left py-1 text-slate-600 hover:text-brand-600">Gerakan Dasar (Kihon)</button>
+                <button onclick="navigateTo('kata'); toggleMobileMenu()" class="block w-full text-left py-1 text-slate-600 hover:text-brand-600">Bentuk Jurus (Kata)</button>
+            </div>
+
+            <button onclick="navigateTo('pendaftaran'); toggleMobileMenu()" class="block w-full text-center bg-brand-600 text-white py-2.5 rounded-xl font-bold">Formulir Pendaftaran</button>
+        </div>
+    </header>
+
+    <!-- CONTENT CONTAINERS (VIEW SECTIONS) -->
+    <main class="flex-1">
+
+        <!-- 1. VIEW: BERANDA -->
+        <section id="view-beranda" class="view-section active">
+            <!-- HERO BANNER -->
+            <div class="relative bg-slate-950 text-white py-20 md:py-32 px-4 overflow-hidden">
+                <div class="absolute inset-0 opacity-40 mix-blend-overlay">
+                    <img src="https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1600&q=80" alt="Karate Action" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-transparent"></div>
+                <div class="max-w-7xl mx-auto relative z-10 grid md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-8 space-y-6">
+                        <div class="inline-flex items-center gap-2 bg-brand-600/20 border border-brand-500/30 text-brand-300 text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm">
+                            <span class="w-2 h-2 rounded-full bg-brand-500 animate-ping"></span>
+                            Pengcab Resmi Kabupaten Landak
+                        </div>
+                        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
+                            Akademi Seni-Beladiri Karate Indonesia <span class="text-brand-500 block">Landak</span>
+                        </h1>
+                        <p class="text-slate-300 text-base md:text-xl max-w-2xl font-medium leading-relaxed">
+                            Membentuk karakter kesatria, mental disiplin, dan mencetak atlet karate berprestasi di tingkat daerah, nasional, dan internasional.
+                        </p>
+                        <div class="flex flex-wrap gap-4 pt-2">
+                            <button onclick="navigateTo('pendaftaran')" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-3.5 rounded-2xl shadow-lg transition flex items-center gap-2">
+                                <i data-lucide="user-plus" class="w-5 h-5"></i> Gabung Sekarang
+                            </button>
+                            <button onclick="navigateTo('sejarah')" class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white font-semibold px-6 py-3.5 rounded-2xl transition flex items-center gap-2">
+                                <i data-lucide="compass" class="w-5 h-5"></i> Jelajahi Profil
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STATISTIK RINGKAS -->
+            <div class="bg-white border-b border-slate-200 py-8 px-4">
+                <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                        <p class="text-3xl font-extrabold text-brand-600">8+</p>
+                        <p class="text-xs text-slate-500 font-medium mt-1">Dojo & Ranting Aktif</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                        <p class="text-3xl font-extrabold text-slate-900">***</p>
+                        <p class="text-xs text-slate-500 font-medium mt-1">Karateka Terdaftar</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                        <p class="text-3xl font-extrabold text-slate-900">15+</p>
+                        <p class="text-xs text-slate-500 font-medium mt-1">Pelatih Certified JKA/FORKI</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                        <p class="text-3xl font-extrabold text-brand-600">JKA WF</p>
+                        <p class="text-xs text-slate-500 font-medium mt-1">Afiliasi Internasional</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FITUR UTAMA & QUICK ACCESS -->
+            <div class="py-16 px-4 max-w-7xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1 rounded-full">Layanan Digital</span>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-slate-900 mt-3">Akses Informasi Lengkap ASKI Landak</h2>
+                    <p class="text-slate-600 text-sm mt-2">Dapatkan akses cepat ke seluruh layanan dan sistem pembelajaran karate digital kami.</p>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Card 1 -->
+                    <div onclick="navigateTo('kihon')" class="cursor-pointer group bg-white p-6 rounded-3xl border border-slate-200 shadow-xs hover:shadow-md hover:border-brand-300 transition">
+                        <div class="w-12 h-12 bg-red-100 text-brand-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-brand-600 group-hover:text-white transition">
+                            <i data-lucide="zap" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 group-hover:text-brand-600 transition">Modul Kihon (Gerakan Dasar)</h3>
+                        <p class="text-slate-600 text-xs mt-2 leading-relaxed">Pelajari teknik kuda-kuda (dachi), pukulan (tsuki), tangkisan (uke), dan tendangan (geri) secara interaktif.</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div onclick="navigateTo('kata')" class="cursor-pointer group bg-white p-6 rounded-3xl border border-slate-200 shadow-xs hover:shadow-md hover:border-brand-300 transition">
+                        <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-amber-600 group-hover:text-white transition">
+                            <i data-lucide="award" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 group-hover:text-amber-600 transition">Katalog Jurus (Kata)</h3>
+                        <p class="text-slate-600 text-xs mt-2 leading-relaxed">Panduan lengkap jurus dasar Heian 1-5 hingga Kata Lanjutan standar Japan Karate Association (JKA).</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div onclick="navigateTo('ranting')" class="cursor-pointer group bg-white p-6 rounded-3xl border border-slate-200 shadow-xs hover:shadow-md hover:border-brand-300 transition">
+                        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition">
+                            <i data-lucide="building-2" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 group-hover:text-blue-600 transition">Lokasi Dojo & Ranting</h3>
+                        <p class="text-slate-600 text-xs mt-2 leading-relaxed">Cari tempat latihan terdekat di Ngabang, Menyuke, Senga Temila, dan kecamatan lainnya di Kabupaten Landak.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. VIEW: SEJARAH -->
+        <section id="view-sejarah" class="view-section py-12 px-4 max-w-5xl mx-auto space-y-8">
+            <div class="bg-white p-8 md:p-12 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1 rounded-full">Profil Organisasi</span>
+                <h2 class="text-3xl font-extrabold text-slate-900">Sejarah & Perjalanan ASKI</h2>
+                
+                <div class="prose prose-slate max-w-none text-slate-600 text-sm md:text-base leading-relaxed space-y-4">
+                    <p>
+                        <strong>ASKI (Akademi Seni-Beladiri Karate Indonesia)</strong>, yang awalnya berdiri dengan nama <strong>AMURA</strong>, merupakan salah satu perguruan karate terkemuka di Indonesia yang konsisten membina generasi muda berkarakter.
+                    </p>
+                    <p>
+                        Sebagai anggota resmi <strong>PB FORKI (Pengurus Besar Federasi Olahraga Karate-Do Indonesia)</strong>, ASKI beroperasi di bawah naungan Yayasan Amura Karate-Do Indonesia. Dalam skala global, ASKI secara resmi berafiliasi dengan <strong>Japan Karate Association World Federation (JKA WF)</strong> yang berkantor pusat di Tokyo, Jepang.
+                    </p>
+                    <div class="p-6 bg-slate-50 border-l-4 border-brand-600 rounded-r-2xl my-6">
+                        <h4 class="font-bold text-slate-900 text-base mb-1">Eksistensi di Kabupaten Landak</h4>
+                        <p class="text-xs md:text-sm text-slate-600">
+                            Pengcab ASKI Kabupaten Landak Kalimantan Barat dibentuk untuk memperluas jangkauan pembinaan mental beladiri kesatria bagi pelajar, pemuda, dan masyarakat umum di wilayah Kabupaten Landak, khususnya berpusat di Kecamatan Ngabang.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. VIEW: VISI MISI -->
+        <section id="view-visimisi" class="view-section py-12 px-4 max-w-6xl mx-auto space-y-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1 rounded-full">Landasan Organisasi</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Visi & Misi ASKI Landak</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Visi Card -->
+                <div class="bg-gradient-to-br from-slate-900 to-slate-950 text-white p-8 rounded-3xl shadow-lg border border-slate-800 space-y-4">
+                    <div class="w-12 h-12 bg-brand-600 rounded-2xl flex items-center justify-center font-bold text-xl">V</div>
+                    <h3 class="text-2xl font-bold">Visi Utama</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Menjadi perguruan karate unggulan di Kalimantan Barat yang melahirkan karateka berjiwa ksatria, berakhlak mulia, berprestasi di tingkat nasional, serta berstandar internasional JKA.
+                    </p>
+                </div>
+
+                <!-- Misi Card -->
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+                    <div class="w-12 h-12 bg-red-100 text-brand-600 rounded-2xl flex items-center justify-center font-bold text-xl">M</div>
+                    <h3 class="text-2xl font-bold text-slate-900">Misi Strategis</h3>
+                    <ul class="space-y-3 text-xs md:text-sm text-slate-600">
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-600 shrink-0 mt-0.5"></i>
+                            <span>Menyelenggarakan latihan terstruktur berbasis kurikulum standar JKA WF.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-600 shrink-0 mt-0.5"></i>
+                            <span>Membina disiplin, etika, dan karakter mulia melalui prinsip Karate-Do Niju Kun.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-600 shrink-0 mt-0.5"></i>
+                            <span>Mengembangkan potensi atlet potensial Kabupaten Landak untuk Kejurda dan Kejurnas.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. VIEW: PENGURUS -->
+        <section id="view-pengurus" class="view-section py-12 px-4 max-w-6xl mx-auto space-y-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1 rounded-full">Struktur Kepengurusan</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Pengurus Pengcab ASKI Landak</h2>
+                <p class="text-xs text-slate-500 mt-1">Periode Kepengurusan Aktif</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Person Card 1 -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs flex items-center gap-4">
+                    <div class="w-14 h-14 bg-slate-900 text-white font-extrabold rounded-2xl flex items-center justify-center text-xl shrink-0">
+                        KU
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-bold text-brand-600 uppercase tracking-wider">Ketua Umum</span>
+                        <h4 class="font-extrabold text-slate-900 text-base">Budi Santoso, S.H.</h4>
+                        <p class="text-xs text-slate-500">Pengcab ASKI Landak</p>
+                    </div>
+                </div>
+                <!-- Person Card 2 -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs flex items-center gap-4">
+                    <div class="w-14 h-14 bg-slate-800 text-white font-extrabold rounded-2xl flex items-center justify-center text-xl shrink-0">
+                        SEK
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-bold text-brand-600 uppercase tracking-wider">Sekretaris</span>
+                        <h4 class="font-extrabold text-slate-900 text-base">Siti Aminah</h4>
+                        <p class="text-xs text-slate-500">Pengcab ASKI Landak</p>
+                    </div>
+                </div>
+                <!-- Person Card 3 -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs flex items-center gap-4">
+                    <div class="w-14 h-14 bg-slate-800 text-white font-extrabold rounded-2xl flex items-center justify-center text-xl shrink-0">
+                        BEN
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-bold text-brand-600 uppercase tracking-wider">Bendahara</span>
+                        <h4 class="font-extrabold text-slate-900 text-base">Ahmad Rifa'i</h4>
+                        <p class="text-xs text-slate-500">Pengcab ASKI Landak</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. VIEW: RANTING & DOJO -->
+        <section id="view-ranting" class="view-section py-12 px-4 max-w-6xl mx-auto space-y-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1 rounded-full">Lokasi Latihan</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Daftar Ranting & Dojo ASKI Landak</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dojo Item 1 -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-3">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Dojo Pusat</span>
+                        <i data-lucide="map-pin" class="w-5 h-5 text-brand-600"></i>
+                    </div>
+                    <h3 class="font-extrabold text-slate-900 text-lg">Dojo Ngabang</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Jl. Ilong, Kecamatan Ngabang, Kabupaten Landak</p>
+                    <div class="pt-2 border-t border-slate-100 text-xs text-slate-500">
+                        <p><strong>Jadwal:</strong> Selasa & Jumat (15:30 WIB)</p>
+                        <p><strong>Pelatih:</strong> Sensei Hendra (DAN III JKA)</p>
+                    </div>
+                </div>
+                <!-- Dojo Item 2 -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-3">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-blue-100 text-blue-800 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Ranting</span>
+                        <i data-lucide="map-pin" class="w-5 h-5 text-brand-600"></i>
+                    </div>
+                    <h3 class="font-extrabold text-slate-900 text-lg">Dojo Menyuke</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Kecamatan Menyuke, Kabupaten Landak</p>
+                    <div class="pt-2 border-t border-slate-100 text-xs text-slate-500">
+                        <p><strong>Jadwal:</strong> Rabu & Minggu (15:30 WIB)</p>
+                        <p><strong>Pelatih:</strong> Sempai Markus (DAN I)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. VIEW: JADWAL LATIHAN -->
+        <section id="view-jadwal" class="view-section py-12 px-4 max-w-5xl mx-auto space-y-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1 rounded-full">Agenda Latihan</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Jadwal Rutin Latihan Karate</h2>
+            </div>
+
+            <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-xs">
+                <table class="w-full text-left border-collapse text-xs md:text-sm">
+                    <thead>
+                        <tr class="bg-slate-900 text-white font-bold uppercase text-[11px] tracking-wider">
+                            <th class="p-4">Dojo / Ranting</th>
+                            <th class="p-4">Hari Latihan</th>
+                            <th class="p-4">Waktu (WIB)</th>
+                            <th class="p-4">Materi Utama</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 font-medium text-slate-700">
+                        <tr>
+                            <td class="p-4 font-bold text-slate-900">Dojo Ngabang</td>
+                            <td class="p-4">Selasa & Jumat</td>
+                            <td class="p-4">15:30 - 17:30</td>
+                            <td class="p-4">Kihon & Kata Standard JKA</td>
+                        </tr>
+                        <tr class="bg-slate-50">
+                            <td class="p-4 font-bold text-slate-900">Dojo Menyuke</td>
+                            <td class="p-4">Rabu & Minggu</td>
+                            <td class="p-4">15:30 - 17:30</td>
+                            <td class="p-4">Fisik & Kumite Tanding</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 7. VIEW: KALENDER EVENT -->
+        <section id="view-kalender" class="view-section py-12 px-4 max-w-5xl mx-auto space-y-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1 rounded-full">Kalender Organisasi</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Agenda & Event Tahun 2026</h2>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-brand-50 text-brand-600 font-black p-3 rounded-2xl text-center min-w-[70px]">
+                            <span class="block text-xl">07</span>
+                            <span class="text-[10px] uppercase">SEP 2026</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base">Ujian Kenaikan Tingkat (UKT) Periode II</h4>
+                            <p class="text-xs text-slate-500">Gelanggang Olahraga Ngabang</p>
+                        </div>
+                    </div>
+                    <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full">Mendatang</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. VIEW: GALERI FOTO -->
+        <section id="view-galeri-foto" class="view-section py-12 px-4 max-w-6xl mx-auto space-y-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1 rounded-full">Dokumentasi</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Galeri Foto Kegiatan</h2>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="h-48 rounded-2xl bg-slate-200 overflow-hidden relative group">
+                    <img src="https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" alt="Foto Latihan">
+                    <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4 text-white text-xs font-bold">Latihan Bersama Dojo Ngabang</div>
+                </div>
+                <div class="h-48 rounded-2xl bg-slate-200 overflow-hidden relative group">
+                    <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" alt="Foto UKT">
+                    <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4 text-white text-xs font-bold">Ujian Kenaikan Tingkat Sabuk</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. VIEW: GALERI VIDEO -->
+        <section id="view-galeri-video" class="view-section py-12 px-4 max-w-6xl mx-auto space-y-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1 rounded-full">Video Edukasi</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Galeri Video & Peragaan</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-xs p-4 space-y-3">
+                    <div class="aspect-video bg-slate-900 rounded-2xl flex items-center justify-center text-white cursor-pointer hover:bg-slate-800 transition">
+                        <i data-lucide="play-circle" class="w-12 h-12 text-brand-500"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 text-base">Tutorial Dasar Kihon Karate JKA</h4>
+                    <p class="text-xs text-slate-500">Panduan gerakan dasar bagi anggota tingkat pemula (Sabuk Putih & Kuning).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. VIEW: BERITA TERBARU -->
+        <section id="view-berita" class="view-section py-12 px-4 max-w-6xl mx-auto space-y-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1 rounded-full">Kabar Terkini</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Berita & Informasi Publik</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-xs space-y-4 p-5">
+                    <span class="text-[10px] font-bold text-brand-600 uppercase">07 September 2026</span>
+                    <h3 class="font-bold text-slate-900 text-base">Sukses Gelar UKT Periode II ASKI Landak</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Sebanyak 120 peserta berhasil melampaui standar pengujian kenaikan sabuk yang dipimpin oleh Tim Penguji Pengda.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. VIEW: PENGUMUMAN -->
+        <section id="view-pengumuman" class="view-section py-12 px-4 max-w-5xl mx-auto space-y-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1 rounded-full">Resmi</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Pengumuman Resmi Pengcab</h2>
+            </div>
+
+            <div class="bg-amber-50 border border-amber-200 p-6 rounded-3xl space-y-2">
+                <div class="flex items-center gap-2 text-amber-800 font-bold text-sm">
+                    <i data-lucide="alert-circle" class="w-5 h-5"></i>
+                    <span>Wajib Memakai Seragam Dogi Standar ASKI</span>
+                </div>
+                <p class="text-xs text-amber-900 leading-relaxed">Diberitahukan kepada seluruh anggota bahwa latihan resmi wajib mengunakan seragam karate (dogi) lengkap dengan atribut badge ASKI di dada sebelah kiri.</p>
+            </div>
+        </section>
+
+        <!-- 12. VIEW: EDUKASI DIGITAL - KIHON -->
+        <section id="view-kihon" class="view-section py-12 px-4 max-w-6xl mx-auto space-y-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1 rounded-full">Modul Belajar</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Teknik Dasar (Kihon) Karate</h2>
+                <p class="text-xs text-slate-500 mt-1">Edukasi Digital Jurus & Teknik Utama JKA</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-3">
+                    <span class="bg-red-100 text-brand-600 font-bold text-[10px] px-2.5 py-1 rounded-full">Dachi (Kuda-kuda)</span>
+                    <h3 class="font-extrabold text-slate-900 text-base">Zenkutsu Dachi</h3>
+                    <p class="text-xs text-slate-600">Kuda-kuda depan berat badan 60% di kaki depan, 40% di kaki belakang.</p>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-3">
+                    <span class="bg-blue-100 text-blue-700 font-bold text-[10px] px-2.5 py-1 rounded-full">Tsuki (Pukulan)</span>
+                    <h3 class="font-extrabold text-slate-900 text-base">Chudan Tsuki</h3>
+                    <p class="text-xs text-slate-600">Pukulan lurus mengarah ke ulu hati musuh dengan rotasi pinggul.</p>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-3">
+                    <span class="bg-emerald-100 text-emerald-700 font-bold text-[10px] px-2.5 py-1 rounded-full">Uke (Tangkisan)</span>
+                    <h3 class="font-extrabold text-slate-900 text-base">Age Uke</h3>
+                    <p class="text-xs text-slate-600">Tangkisan ke arah atas untuk melindungi bagian kepala dan wajah.</p>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-3">
+                    <span class="bg-amber-100 text-amber-800 font-bold text-[10px] px-2.5 py-1 rounded-full">Geri (Tendangan)</span>
+                    <h3 class="font-extrabold text-slate-900 text-base">Mae Geri</h3>
+                    <p class="text-xs text-slate-600">Tendangan lurus depan menggunakan pangkal telapak kaki (koshos).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 13. VIEW: EDUKASI DIGITAL - KATA -->
+        <section id="view-kata" class="view-section py-12 px-4 max-w-6xl mx-auto space-y-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1 rounded-full">Modul Belajar</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Bentuk Jurus (Kata) Standard</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="bg-slate-100 text-slate-800 text-[10px] font-bold px-2.5 py-1 rounded-full">Kata Dasar 1</span>
+                        <span class="text-xs font-bold text-brand-600">21 Gerakan</span>
+                    </div>
+                    <h3 class="font-extrabold text-slate-900 text-lg">Heian Shodan</h3>
+                    <p class="text-xs text-slate-600">Kata pertama yang mempelajari variasi Zenkutsu Dachi, Gedan Barai, Oi Tsuki, dan Age Uke.</p>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="bg-slate-100 text-slate-800 text-[10px] font-bold px-2.5 py-1 rounded-full">Kata Dasar 2</span>
+                        <span class="text-xs font-bold text-brand-600">26 Gerakan</span>
+                    </div>
+                    <h3 class="font-extrabold text-slate-900 text-lg">Heian Nidan</h3>
+                    <p class="text-xs text-slate-600">Memperkenalkan kuda-kuda Kokutsu Dachi, tangkisan Uchi Uke, dan teknik Mae Geri Kombinasi.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 14. VIEW: FORMULIR PENDAFTARAN -->
+        <section id="view-pendaftaran" class="view-section py-12 px-4 max-w-3xl mx-auto space-y-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1 rounded-full">Penerimaan Anggota</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Formulir Pendaftaran Online</h2>
+                <p class="text-xs text-slate-500 mt-1">Bergabung menjadi Karateka ASKI Kabupaten Landak</p>
+            </div>
+
+            <form id="reg-form" onsubmit="handleRegistration(event)" class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+                <div class="space-y-4">
+                    <h4 class="font-extrabold text-slate-900 text-sm border-b pb-2">1. Data Pribadi Calon Anggota</h4>
+                    
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Nama Lengkap</label>
+                        <input type="text" required placeholder="Sesuai KTP / Akta Kelahiran" class="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-600">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Tempat Lahir</label>
+                            <input type="text" required placeholder="Kota / Kab" class="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-600">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Tanggal Lahir</label>
+                            <input type="date" required class="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-600">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Alamat Lengkap</label>
+                        <textarea rows="2" required placeholder="Alamat tinggal di Landak" class="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-600"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Nomor WhatsApp / HP</label>
+                        <input type="tel" required placeholder="08xxxxxxxxxx" class="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-600">
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="font-extrabold text-slate-900 text-sm border-b pb-2">2. Riwayat & Pilihan Dojo</h4>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-2">Pernah Belajar Karate Sebelumnya?</label>
+                        <div class="flex space-x-6 text-xs font-semibold">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="karate_prev" value="ya" id="karate-ya" class="text-brand-600"> Ya, Pernah
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="karate_prev" value="tidak" id="karate-tidak" checked class="text-brand-600"> Belum Pernah (Pemula)
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="riwayat-box" class="hidden p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Perguruan Asal</label>
+                            <select id="perguruan" class="w-full text-xs bg-white border border-slate-200 rounded-xl px-4 py-2.5 focus:outline-none focus:border-brand-600">
+                                <option value="">-- Pilih Perguruan --</option>
+                                <option value="ASKI">ASKI (Tinggal Pindah Dojo)</option>
+                                <option value="DILUAR ASKI">Luar ASKI (FORKI Lain)</option>
+                            </select>
+                        </div>
+                        <div id="surat-box" class="hidden">
+                            <label class="block text-xs font-bold text-brand-600 mb-1">Upload Surat Pengunduran Diri Perguruan Lama</label>
+                            <input type="file" id="surat_pengunduran" class="text-xs w-full bg-white border border-slate-200 rounded-xl p-2">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Pilih Dojo Latihan</label>
+                        <select required class="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-600">
+                            <option value="">-- Pilih Dojo --</option>
+                            <option value="Dojo Ngabang">Dojo Ngabang (Pusat)</option>
+                            <option value="Dojo Menyuke">Dojo Menyuke</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 rounded-2xl transition shadow-lg text-sm">
+                    Kirim Pendaftaran
+                </button>
+            </form>
+        </section>
+
+        <!-- 15. VIEW: PORTAL LOGIN -->
+        <section id="view-login" class="view-section py-12 px-4 max-w-md mx-auto space-y-8">
+            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-xl space-y-6">
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-slate-900 text-white font-extrabold rounded-2xl flex items-center justify-center text-xl mx-auto mb-3">
+                        A
+                    </div>
+                    <h3 class="text-2xl font-extrabold text-slate-900">Portal Masuk</h3>
+                    <p class="text-xs text-slate-500 mt-1">Akses Admin & Dashboard Anggota</p>
+                </div>
+
+                <form onsubmit="handleLogin(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Hak Akses (Role)</label>
+                        <select id="user-role" required class="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-600">
+                            <option value="">-- Pilih Role --</option>
+                            <option value="admin">Administrator Pengcab</option>
+                            <option value="pelatih">Pelatih / Sensei</option>
+                            <option value="anggota">Anggota Karateka</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Username / ID Anggota</label>
+                        <input type="text" required placeholder="Masukkan ID / Username" class="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-600">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Kata Sandi</label>
+                        <input type="password" required placeholder="••••••••" class="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-600">
+                    </div>
+
+                    <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-2xl transition shadow-md text-xs">
+                        Masuk Sistem
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER LENGKAP -->
+    <footer class="bg-slate-950 text-white py-12 px-4 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-xs text-slate-400">
+            <div class="space-y-3">
+                <h3 class="font-extrabold text-white text-base">ASKI Kabupaten Landak</h3>
+                <p class="leading-relaxed">Akademi Seni-Beladiri Karate Indonesia Pengurus Cabang Kabupaten Landak, Provinsi Kalimantan Barat.</p>
+                <p class="text-[11px] text-slate-500">Afiliasi Resmi: PB FORKI & JKA WF</p>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white text-sm mb-3">Navigasi Cepat</h4>
+                <ul class="space-y-2">
+                    <li><button onclick="navigateTo('beranda')" class="hover:text-white transition">Beranda</button></li>
+                    <li><button onclick="navigateTo('sejarah')" class="hover:text-white transition">Sejarah Organisasi</button></li>
+                    <li><button onclick="navigateTo('ranting')" class="hover:text-white transition">Daftar Dojo & Ranting</button></li>
+                    <li><button onclick="navigateTo('pendaftaran')" class="hover:text-white transition">Pendaftaran Anggota</button></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white text-sm mb-3">Edukasi Karate</h4>
+                <ul class="space-y-2">
+                    <li><button onclick="navigateTo('kihon')" class="hover:text-white transition">Teknik Dasar (Kihon)</button></li>
+                    <li><button onclick="navigateTo('kata')" class="hover:text-white transition">Jurus Standard (Kata)</button></li>
+                    <li><button onclick="navigateTo('jadwal')" class="hover:text-white transition">Jadwal Latihan</button></li>
+                </ul>
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="font-bold text-white text-sm mb-3">Sekretariat</h4>
+                <p class="leading-relaxed">Jl. Ilong, Kecamatan Ngabang, Kabupaten Landak, Kalimantan Barat.</p>
+                <div class="flex items-center space-x-3 text-slate-300">
+                    <a href="https://wa.me/6281234567890" target="_blank" class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center hover:bg-brand-600 transition"><i data-lucide="phone" class="w-4 h-4"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center hover:bg-brand-600 transition"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center hover:bg-brand-600 transition"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto border-t border-slate-900 mt-10 pt-6 text-center text-[11px] text-slate-600">
+            &copy; 2026 Pengcab ASKI Kabupaten Landak. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- SCRIPT APPLICATION LOGIC -->
+    <script>
+        // URL Web App Google Apps Script Anda (Ganti setelah Anda melakukan Deploy)
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwHrQNVPDmOAPlLnDFF3vg4CS0OBYBiZdQiPjp5PtMWVRzekQfzoh47RcatwVU71J6RlA/exec";
+
+        // Inisialisasi Ikon Lucide
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            
+            // Cek hash URL jika ada
+            const hash = window.location.hash.replace('#', '');
+            if (hash) {
+                navigateTo(hash);
+            }
+
+            // Inisialisasi logika form pendaftaran
+            const radioYa = document.getElementById('karate-ya');
+            const radioTidak = document.getElementById('karate-tidak');
+            const riwayatBox = document.getElementById('riwayat-box');
+            const selectPerguruan = document.getElementById('perguruan');
+            const suratBox = document.getElementById('surat-box');
+
+            if(radioYa && radioTidak) {
+                radioYa.addEventListener('change', () => {
+                    if (radioYa.checked) riwayatBox.classList.remove('hidden');
+                });
+                radioTidak.addEventListener('change', () => {
+                    if (radioTidak.checked) {
+                        riwayatBox.classList.add('hidden');
+                        suratBox.classList.add('hidden');
+                    }
+                });
+            }
+
+            if(selectPerguruan) {
+                selectPerguruan.addEventListener('change', () => {
+                    if (selectPerguruan.value === 'DILUAR ASKI') {
+                        suratBox.classList.remove('hidden');
+                    } else {
+                        suratBox.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Mobile menu toggle
+            const menuBtn = document.getElementById('menu-btn');
+            if (menuBtn) {
+                menuBtn.addEventListener('click', toggleMobileMenu);
+            }
+
+            // Coba ambil data dinamis jika URL backend dikonfigurasi
+            if (SCRIPT_URL && !SCRIPT_URL.includes("YOUR_DEPLOYED_SCRIPT_ID")) {
+                loadDynamicDataFromSheet();
+            }
+        });
+
+        // Handler Navigasi Antar Halaman/View
+        function navigateTo(viewId) {
+            const targetView = document.getElementById(`view-${viewId}`);
+            if (!targetView) return;
+
+            document.querySelectorAll('.view-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            targetView.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            history.pushState(null, null, `#${viewId}`);
+
+            setTimeout(() => lucide.createIcons(), 50);
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu) {
+                mobileMenu.classList.toggle('hidden');
+            }
+        }
+
+        // Helper Konversi Berkas ke Base64
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        // Handler Pendaftaran Online terhubung ke Google Apps Script
+        async function handleRegistration(e) {
+            e.preventDefault();
+
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerText;
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Mengirim Pendaftaran...";
+
+            try {
+                const form = e.target;
+                const namaLengkap = form.querySelector('input[placeholder*="KTP"]').value;
+                const tempatLahir = form.querySelectorAll('input[placeholder="Kota / Kab"]')[0].value;
+                const tanggalLahir = form.querySelector('input[type="date"]').value;
+                const alamat = form.querySelector('textarea').value;
+                const noWhatsapp = form.querySelector('input[type="tel"]').value;
+                const pernahKarate = document.querySelector('input[name="karate_prev"]:checked').value;
+                const perguruanAsal = document.getElementById('perguruan')?.value || '';
+                const dojoPilihan = form.querySelector('select[required]').value;
+
+                let fileData = null;
+                let fileName = null;
+                let fileType = null;
+
+                const fileInput = document.getElementById('surat_pengunduran');
+                if (fileInput && fileInput.files.length > 0) {
+                    const file = fileInput.files[0];
+                    fileData = await fileToBase64(file);
+                    fileName = file.name;
+                    fileType = file.type;
+                }
+
+                const payload = {
+                    action: "pendaftaran",
+                    namaLengkap,
+                    tempatLahir,
+                    tanggalLahir,
+                    alamat,
+                    noWhatsapp,
+                    pernahKarate,
+                    perguruanAsal,
+                    dojoPilihan,
+                    fileData,
+                    fileName,
+                    fileType
+                };
+
+                if (SCRIPT_URL && !SCRIPT_URL.includes("YOUR_DEPLOYED_SCRIPT_ID")) {
+                    const response = await fetch(SCRIPT_URL, {
+                        method: "POST",
+                        body: JSON.stringify(payload)
+                    });
+                    const res = await response.json();
+
+                    if (res.status === "success") {
+                        alert(`Pendaftaran Berhasil!\n\nID Pendaftaran: ${res.idPendaftaran}\nData telah tersimpan di DATABASE Pengcab ASKI Landak. Sekretariat akan menghubungi Anda via WhatsApp.`);
+                        form.reset();
+                        navigateTo('beranda');
+                    } else {
+                        throw new Error(res.message || "Gagal menyimpan pendaftaran.");
+                    }
+                } else {
+                    // Fallback Simulasi jika Web App URL belum dipasang
+                    alert('Terima kasih! Formulir pendaftaran berhasil dikirim. Sekretariat ASKI Landak akan menghubungi Anda melalui WhatsApp.\n\n(Catatan: Untuk menyimpan ke Google Sheets secara nyata, pasang URL Web App pada variabel SCRIPT_URL).');
+                    form.reset();
+                    navigateTo('beranda');
+                }
+
+            } catch (err) {
+                alert("Terjadi kesalahan saat mengirim pendaftaran: " + err.message);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = originalBtnText;
+            }
+        }
+
+        // Handler Portal Login terhubung ke Google Apps Script
+        async function handleLogin(e) {
+            e.preventDefault();
+            const role = document.getElementById('user-role').value;
+            const usernameInput = e.target.querySelector('input[type="text"]').value;
+            const passwordInput = e.target.querySelector('input[type="password"]').value;
+
+            if (SCRIPT_URL && !SCRIPT_URL.includes("YOUR_DEPLOYED_SCRIPT_ID")) {
+                try {
+                    const response = await fetch(SCRIPT_URL, {
+                        method: "POST",
+                        body: JSON.stringify({
+                            action: "login",
+                            username: usernameInput,
+                            password: passwordInput,
+                            role: role
+                        })
+                    });
+                    const res = await response.json();
+
+                    if (res.status === "success") {
+                        alert(`Selamat Datang, ${res.user.nama}! Login berhasil sebagai ${res.user.role.toUpperCase()}.`);
+                        navigateTo('beranda');
+                    } else {
+                        alert(res.message || "Login gagal! Periksa username dan password Anda.");
+                    }
+                } catch (err) {
+                    alert("Gagal terhubung ke server login DATABASE.");
+                }
+            } else {
+                alert(`Login simulasi berhasil sebagai ${role.toUpperCase()}!`);
+                navigateTo('beranda');
+            }
+        }
+
+        // Fungsi Memuat Data Dinamis dari DATABASE jika Backend Aktif
+        async function loadDynamicDataFromSheet() {
+            try {
+                const response = await fetch(SCRIPT_URL + "?action=get_all");
+                const res = await response.json();
+
+                if (res.status === "success" && res.data) {
+                    console.log("Data berhasil dimuat dari DATABASE:", res.data);
+                }
+            } catch (err) {
+                console.warn("Gagal mengambil data dari DATABASE. Menggunakan data bawaan.", err);
+            }
+        }
+    </script>
+</body>
+</html>
